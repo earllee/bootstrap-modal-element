@@ -1,0 +1,41 @@
+<template id="button-template">
+  <style>
+    @import url(http://getbootstrap.com/dist/css/bootstrap.css)
+  </style>
+
+  <!-- Button trigger modal -->
+  <button class="btn btn-primary btn-lg" data-toggle="modal"  id="myModalBtn">
+    <content></content>
+  </button>
+</template>
+
+<script>
+  var buttonImportDoc = document.currentScript.ownerDocument;
+
+  var proto = Object.create(HTMLElement.prototype, {
+    createdCallback: {
+      value: function() {
+        var t = buttonImportDoc.querySelector('#button-template');
+        var clone = document.importNode(t.content, true);
+        var root = this.createShadowRoot(); 
+        root.appendChild(clone);
+
+        // Create button hook
+        this.addEventListener('click', function(e){
+          this.toggle();
+        });
+
+        console.log('Successfully stamped out modal-button!');
+
+      }
+    },
+    toggle: {
+      value: function(o) {
+        var target = this.getAttribute('data-target');
+        var modal = document.querySelector(target);
+        modal.toggle();
+      }
+    }
+  });
+  document.registerElement('modal-button', {prototype: proto});
+</script>

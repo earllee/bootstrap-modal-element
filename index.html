@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="import" href="./modal-window.html" />
+    <link rel="import" href="./modal-button.html" />
+    <meta charset="utf-8">
+    <title>Modal Custom Element</title>
+  </head>
+  <body>
+
+    <modal-button data-target="#sweetModal">
+      <span>Toggle Button</span>
+    </modal-button>
+
+    <modal-window id="sweetModal">
+      <h1>Breaking News: Bootstrap Modal Is Working</h1>
+      <p>After some struggles, the modal is finally working. The code should probably be cleaned up, however.</p>
+    </modal-window>
+
+
+    <modal-button data-target="#sourModal">
+      <span>Toggle Another Button</span>
+    </modal-button>
+
+    <modal-window id="sourModal">
+      <h1>Breaking News: Bootstrap Modal Is Really Working</h1>
+      <p>Even works with multiple instances!</p>
+    </modal-window>
+
+  </body>
+</html>
