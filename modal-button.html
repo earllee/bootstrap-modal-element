@@ -20,20 +20,27 @@
         var root = this.createShadowRoot(); 
         root.appendChild(clone);
 
+
+        var target = this.getAttribute('target');
+        this.modal = document.querySelector(target);
+
         // Create button hook
-        this.addEventListener('click', function(e){
-          this.toggle();
-        });
+        this.addEventListener('click', this.toggle);
 
         console.log('Successfully stamped out modal-button!');
 
       }
     },
+    detachedCallback: {
+      value: function() {
+        this.modal.remove();
+        this.removeEventListener('click', this.toggle); 
+        console.log('Successfully removed modal-button and its associated modal!');
+      }
+    },
     toggle: {
       value: function(o) {
-        var target = this.getAttribute('data-target');
-        var modal = document.querySelector(target);
-        modal.toggle();
+        this.modal.toggle();
       }
     }
   });

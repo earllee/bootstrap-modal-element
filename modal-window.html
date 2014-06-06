@@ -222,15 +222,21 @@
         var clone = document.importNode(t.content, true);
         var root = this.createShadowRoot(); 
         root.appendChild(clone);
-        var modalWindow = root.querySelector('#myModal');
+
+        this.button = document.querySelector('modal-button[target="#' + this.getAttribute('id') + '"]');
 
         console.log('Successfully stamped out modal-window!');
 
       }
     },
+    detachedCallback: {
+      value: function() {
+        this.button.remove();
+        console.log('Successfully removed modal-window and its associated button!');
+      }
+    },
     toggle: {
       value: function() {
-        var context = this.shadowRoot;
         jQuery(this.shadowRoot.querySelector('#myModal')).modal('toggle');
       }
     }
